@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <link>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="CapstoneCSS/Item.css">
+        
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+        <script type="text/javascript" src="Scripts/auth.js"></script>
+        <script type="text/javascript" src="Scripts/connection.js"></script>
+        
+        <script>
+            
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+            
+            const db = firebase.firestore();
+            const auth = firebase.auth()
+            
+            db.settings({timestampsInSnapshot: true, merge: true});
+            //declares database
+            
+            let userID = localStorage.getItem("LoggedUser")
+            let DocuRef = db.collection(userID+"Items").orderBy("Name", "asc");
+
+            //Display value directly from firebase to the table
+            DocuRef.get().then((snapshot) => {
+                snapshot.docs.forEach(doc => {
+                    document.getElementById("itemsContainer").innerHTML += "<tr><td>"+doc.data().ID+"</td><td>"+doc.data().Name+"</td><td> "+doc.data().Location+" </td><td> "+doc.data().InMaintenance+" </td><td>"+doc.data().InUse+"</td><td> "+doc.data().Quantity+"/"+doc.data().Total+"</td></tr>"
+                });
+            });      
+            function preventBack() { window.history.forward(); }
+            setTimeout("preventBack()", 0);
+            window.onunload = function () { null };  
+
+
+            function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("searchBox");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("itemsContainer");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                    }       
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="logo">
+                <img src="puplogo.png">
+            </div>
+            <div class="logout">
+                <a href="index.html"><button class="logout_btn" onclick="logout()">Logout</button></a>
+            </div>
+            <h1 id="titleName">WIMS</h1>
+        </div>
+        <div class="tabs">
+            <div class="item">
+                <a href="Item.html"><button class="item_btn">Item</button></a>
+            </div>
+
+            <div class="client">
+                <a href="client.html"><button class="client_btn">Client</button></a>
+            </div>
+            <div class="log_item">
+                <a href="maintenance.html"><button class="log_item_btn">Maintenance</button></a>
+            </div>
+            <div class="log_client">
+                <a href="log.html"><button class="log_client_btn">Client Log</button></a>
+            </div>
+            <div class="log_item">
+                <a href="itemHistory.html"><button class="log_item_btn">Item Log</button></a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="options">
+                <a href="add_E.html"><button class="add_btn">Add</button></a>
+                <a href="edit_E.html"><button class="edit_btn">Edit</button></a>
+                <label>Search Item: </label><!--added label--><input id="searchBox" type="text" onkeyup="myFunction()">
+            </div>
+            <div class="list">
+                <table id = "itemsContainer">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>In maintenance</th>
+                        <th>In use</th>
+                        <th>Available Stocks</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <script src="test.js"></script>
+        <script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+        
+        <script type="text/javascript">
+            (function(){
+                emailjs.init("uoqAM45aeWHXwK14O");
+            })();
+        </script>
+
+    </head>
+
+    <body>
+        <input type="text" id="toName">
+        <input type="text" id="fromName">
+        <input type="text" id="msg">
+        <button onclick="sendMail()">Send</button>
+
+    </body>
+
+</html>

@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <link>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="CapstoneCSS/Item.css">
+        <script type="text/javascript" src="Scripts/auth.js"></script>
+        
+    </head>
+ 
+    <body>
+        <div class="header">
+            <div class="logo">
+                <img src="puplogo.png">
+            </div>
+
+            <div class="logout">
+                <a href="index.html"><button class="logout_btn" onclick="logout()">Logout</button></a>
+            </div>
+            <h1 id="titleName">WIMS</h1>
+        </div>
+
+        <div class="tabs">
+            <div class="item">
+                <a href="clientSideItem.html"><button class="item_btn">Item</button></a>
+            </div>
+            <div class="client">
+                <a href="clientSideClient.html"><button class="client_btn">Client</button></a>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="options">
+                <a href="clientSideBorrow.html"><button class="add_btn">Borrow</button></a>
+                <button class="edit_btn"> Return </button>     
+            </div>
+            <div class="addEquipment">  
+                    <h1>Return Equipment</h1>
+                    <label>STD no.: </label> <input id="stdNo" type="text"><button id="srchBtn">Search</button><br>
+                    <label>Name: </label> <input id="stdName" type="text" disabled><br>
+                    <label>Course Yr/Sec: </label> <input id="stdCourse" type="text" disabled><br>
+                    <label>Room: </label> <input id="roomLoc" type="text"disabled><br>
+                    <label>Purpose: </label> <input id="clientPurpose" type="text" disabled><br>
+                    <label>Supervisor: </label> <input id="clientProf" type="text" disabled><br>
+                    <label>PhoneNo.: </label> <input id="phoneNum" type="number"disabled><br>
+                    <label>Borrow Quantity: </label> <input id="quantityCount" type="number" disabled>
+                     
+                    <hr>
+                    <label>ID: </label> <input id="equipmentId" type="text" disabled><br>
+                    <label>Name: </label> <input id="equipmentName" type="text" disabled><br>
+                    <label>Location: </label> <input id="equipmentLoc" type="text" disabled><br>
+
+                    <hr>
+                    <button id="rtnBtn">Return</button>
+            </div>  
+        </div>
+        <script type="module" src="Scripts/returnClient.js"> </script>
+    </body>
+</html>

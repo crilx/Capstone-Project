@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <link>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="CapstoneCSS/index.css">
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+      <script type="text/javascript" src="Scripts/auth.js"></script>
+        
+      <script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyBRO60gzVLD_Wip00DrssuFtDLHd42pa-Y",
+          authDomain: "capstone-project-657c9.firebaseapp.com",
+          databaseURL: "https://capstone-project-657c9-default-rtdb.asia-southeast1.firebasedatabase.app",
+          projectId: "capstone-project-657c9",
+          storageBucket: "capstone-project-657c9.appspot.com",
+          messagingSenderId: "612114696277",
+          appId: "1:612114696277:web:96ff5b4951d11089daacdc",
+          measurementId: "G-30B8FL4P9C"
+          };
+
+          firebase.initializeApp(firebaseConfig);
+          firebase.analytics();
+  
+          const db = firebase.firestore();
+          const auth = firebase.auth()
+  
+          db.settings({timestampsInSnapshot: true, merge: true});
+          function preventBack() { window.history.forward(); }
+          setTimeout("preventBack()", 0);
+          window.onunload = function () { null };
+          
+    </script>
+       
+  </head>
+  <body>
+
+    <div class="header">
+      <div class="logo">
+          <img src="puplogo.png">
+      </div>
+      <h1 id="titleName">WIMS</h1>
+
+    </div>
+
+    <div class="container">
+      <h1>Login</h1>
+      <hr>
+      <label><b>Email</b></label>
+      <input type="text" placeholder="Username" name="usrName" id="usrName">
+      <label><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" id="password">
+      <hr>
+      
+      <button onclick="login()">Login</button><a href="reset_password_form.html"><button>Reset Password</button></a>
+    </div>
+  </body>
+</html>

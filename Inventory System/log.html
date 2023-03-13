@@ -1,0 +1,157 @@
+<html>
+    <head>
+        <link>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="CapstoneCSS/Item.css">
+
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+        <script type="text/javascript" src="Scripts/connection.js"></script>
+
+
+        <script>
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+        const db =firebase.firestore();
+        db.settings({timestampsInSnapshot: true, merge: true});
+
+        //declares database
+        let userID = localStorage.getItem("LoggedUser")
+        let DocuRef = db.collection(userID+"ClientHistory").orderBy("Date", "desc");
+
+        //Display value directly from firebase to the table
+        DocuRef.get().then((snapshot) => {
+            snapshot.docs.forEach(doc => {
+               document.getElementById("itemsContainer").innerHTML += "<tr><td>"+doc.data().Name+"</td><td> "+doc.data().Course+" </td><td>"+doc.data().Supervisor+"</td><td> "+doc.data().Item+" </td><td> "+doc.data().Purpose+" </td><td> "+doc.data().Action+"</td><td> "+doc.data().Number+"</td><td> "+doc.data().Quantity+"</td><td> "+doc.data().Date+"</td></tr>"
+            });
+        });
+        
+        function exportData(){
+            var table = document.getElementById("itemsContainer");
+            var today = new Date();
+            var date = today.getMonth()+1 +'-'+(today.getDate())+'-'+today.getFullYear();                             
+            var rows = [];
+
+            for (let i=0, row; row = table.rows[i]; i++) {
+                //rows would be accessed using the "row" variable assigned in the for loop
+                //Get each cell value/column from the row
+                column1 = row.cells[0].innerText;
+                column2 = row.cells[1].innerText;
+                column3 = row.cells[2].innerText;
+                column4 = row.cells[3].innerText;
+                column5 = row.cells[4].innerText;
+                column6 = row.cells[5].innerText;
+                column7 = row.cells[6].innerText;
+                column8 = row.cells[7].innerText;
+    
+                /* add a new records in the array */
+                rows.push(
+                    [
+                        column1,
+                        column2,
+                        column3,
+                        column4,
+                        column5,
+                        column6,
+                        column7,
+                        column8
+                    ]
+                );
+            }
+            csvContent = "data:text/csv;charset=utf-8,";
+            /* add the column delimiter as comma(,) and each row splitted by new line character (\n) */
+            rows.forEach(function(rowArray){
+                row = rowArray.join(",");
+                csvContent += row + "\r\n";
+            });
+    
+            /* create a hidden <a> DOM node and set its download attribute */
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "client_history"+date+".csv");
+            document.body.appendChild(link);
+            /* download the data file named "Stock_Price_Report.csv" */
+            link.click();
+        }
+        
+        function myFunction() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("searchBox");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("itemsContainer");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[7];
+                    if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                    }       
+                }
+            }
+            
+    </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <div class="logo">
+                <img src="puplogo.png">
+            </div>
+
+            <div class="logout">
+                <a href="index.html"><button class="logout_btn">Logout</button></a></div>
+                <h1 id="titleName">WIMS</h1>
+        </div>
+            
+        <div class="tabs">
+            <div class="item">
+                <a href="Item.html"><button class="item_btn">Item</button></a>
+            </div>
+
+            <div class="client">
+                <a href="client.html"><button class="client_btn">Client</button></a>
+            </div>
+            <div class="log_item">
+                <a href="maintenance.html"><button class="log_item_btn">Maintenance</button></a>
+            </div>
+            <div class="log_client">
+                <a href="log.html"><button class="log_client_btn">Client Log</button></a>
+            </div>
+            <div class="log_item">
+                <a href="itemHistory.html"><button class="log_item_btn">Item Log</button></a>
+            </div>
+        </div>
+
+        <div class="content">
+            <h4>Client History</h4>
+            <div class="options">
+			<button id="dlBtn" onclick="exportData()">CSV</button>
+			<label>Date Search Filter </label><input id="searchBox" type="date" onmouseleave="myFunction()">
+			</div>
+            <div class="list">
+                <table id = "itemsContainer">
+                    <tr>
+                        <th>Name</th>
+                        <th>Course Yr/Sec</th>
+                        <th>Supervisor</th>
+                        <th>Item</th>
+                        <th>Purpose</th>
+                        <th>Status</th>
+                        <th>Number</th>
+                        <th>Quantity</th>
+                        <th>Date</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </body>
+</html>

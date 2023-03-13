@@ -1,0 +1,36 @@
+<html>
+    <head>
+
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+    </head>
+    
+    <body>
+        <form method="post">
+            <input type="button" value="Send Email" onclick="sendEmail()">
+
+        </form>
+        
+        <script type="text/javascript">
+
+            var text = "printer"
+            var text1 = "student"
+            var text2 = "date"
+
+            function sendEmail(argument){
+                Email.send({
+                Host : "smtp.gmail.com",
+                Username : "blackheart0253@gmail.com",
+                Password : "yinimhcxcqzcfffa",
+                To : 'ugaldejolo@gmail.com',
+                From : "oumashu0253@gmail.com",
+                Subject : "Hello",
+                Body : "Hello there a student has borrowed "  + text + " by "  + text1 + " at "  + text2 + " today."
+            }).then(
+            message => alert(message)
+            );
+            }
+        </script>
+    </body>
+
+
+</html>

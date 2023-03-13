@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <link>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="CapstoneCSS/Item.css">
+        <script type="text/javascript" src="Scripts/auth.js"></script>
+    </head>
+
+
+ 
+    <body>
+        <!--PUP Logo/header-->
+        <div class="header">
+            <div class="logo">
+                <img src="puplogo.png">
+            </div>
+
+            <div class="logout">
+                <a href="index.html"><button class="logout_btn" onclick="logout()">Logout</button></a>  
+            </div>
+            <h1 id="titleName">WIMS</h1>
+        </div>
+
+        <!--Tabs section-->
+        <div class="tabs">
+            <div class="item">
+                <a href="Item.html"><button class="item_btn">Item</button></a>
+            </div>
+
+            <div class="client">
+                <a href="client.html"><button class="client_btn">Client</button></a>
+            </div>
+            <div class="log_item">
+                <a href="maintenance.html"><button class="log_item_btn">Maintenance</button></a>
+            </div>
+            <div class="log_client">
+                <a href="log.html"><button class="log_client_btn">Client Log</button></a>
+            </div>
+            <div class="log_item">
+                <a href="itemHistory.html"><button class="log_item_btn">Item Log</button></a>
+            </div>
+        </div>
+
+
+        <!--Tabs main body-->
+
+        <div class="content">
+            <!--Function Buttons-->
+            <div class="options">
+                <a href="addToMainte.html"><button class="add_btn">Add</button></a>
+                <a href="completeMainte.html"><button class="edit_btn">Complete Maintenance</button></a>
+                <a href="mainteLogs.html"><button class="edit_btn">Maintenance Logs</button></a>
+            </div>
+        
+            <!--Datas-->
+            <div class="editEquipment"> <!--added class name-->
+                <h1>Complete Maintenance</h1>
+                    <label>ID: </label> <input id="equipmentId" type="text"><button id="searchBtn">Search</button><br>
+                    <label>Name: </label> <input id="equipmentName" type="text" disabled><br>
+                    <label>Model: </label> <input id="equipmentModel" type="text" disabled><br>
+                    <label>Completed: </label> <input id="equipmentCompleted" type="number"><br>
+                    <label>Failed: </label> <input id="mainteFailed" type="number"><br>
+                    <label>Supervisor: </label><input id="maintSupervisor" type="text" disabled><br>
+                    <label>Handyman: </label><input id="handyMan" type="text" disabled><br>
+                    <label>Total Cost: </label> <input id="totalMaintCost" type="number">
+                    
+                <!--Function Buttons-->
+                <div class="cBtn"> 
+                    <hr>
+                    <button id="updBtn">Submit</button>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="Scripts/completeMainte.js"></script>
+    </body>
+</html>

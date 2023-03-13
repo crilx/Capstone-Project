@@ -1,0 +1,95 @@
+body{
+    height: 100%;
+}
+
+.header{
+    height: 20%;
+    width: 98%;
+    position: fixed;
+    background-image: linear-gradient(to bottom right, gold, maroon); 
+	/*I removed the border and added gradient*/
+}
+.logo{
+    width: 30%;
+    height: 100%;
+    display: inline-block;
+}
+.logout{
+    height: 20%;
+    width: 25%;
+    margin-left: 43%;
+    display: inline-block;
+    position: fixed;
+}
+.logout_btn{
+    margin-left: 80%;
+    margin-top: 20%;
+}
+
+
+.tabs{
+    margin-top: 12%;
+    height: 70%; /*reduced height from 100 to 70*/
+    width: 20%;
+    margin-right: 80%;
+    margin-bottom: 20%; /*added margin-bottom*/
+    position: fixed; /*remove this line first before editing the margins*/
+    border: 1px solid gray; /*from black to gray*/
+}
+
+/*I adjusted all the buttons from height 25 to 33*/
+
+.item{
+    height: 33%;
+}
+.item_btn{
+    width: 100%;
+    height: 100%;
+}
+.client{
+    height: 33%;
+}
+.client_btn{
+    width: 100%;
+    height: 100%;
+}
+.log{
+    height: 33%;
+}
+.log_btn{
+    width: 100%;
+    height: 100%;
+}
+
+.content{
+    margin-top: 12%;
+    height: 70%; /*reduced height from 100 to 70*/
+    width: 77%;
+    margin-left: 21%;
+    overflow: scroll;
+    margin-bottom: 20%; /*added margin-bottom*/
+    position: fixed; /*remove this line first before editing the margins*/
+    border: 3px solid maroon; /* from black to maroon*/
+}
+.options{
+    height: 5%;
+    width: 100%;
+}
+.addEquipment{
+    height: 100%;
+    width: 100%;
+    border-top: 3px solid black;
+}
+
+.cBtn{
+    height: 10%;
+}
+
+img{
+    max-width: 100%;
+    max-height: 100%;
+}
+p{
+    color: white;
+}
+
